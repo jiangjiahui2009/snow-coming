@@ -1,8 +1,12 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { initDB, getResortById, getWeatherByResortId, getAllWeather, getLastSyncTime } from './db.js';
 import { startScheduler } from './scheduler.js';
 import { syncAllResorts } from './sync.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -98,11 +102,21 @@ app.post('/api/sync', async (_req, res) => {
   }
 });
 
+// ---- Production: serve frontend ----
+
+if (process.env.NODE_ENV === 'production') {
+  const distDir = path.join(__dirname, '..', 'dist');
+  app.use(express.static(distDir));
+  app.use((_req, res) => {
+    res.sendFile(path.join(distDir, 'index.html'));
+  });
+}
+
 // ---- Start ----
 
 initDB();
 startScheduler();
 
-app.listen(PORT, () => {
-  console.log(`[Server] snow coming 后端已启动: http://localhost:${PORT}`);
+app.listen(PORT, '127.0.0.1', () => {
+  console.log(`[Server] snow coming 后端已启动: http://127.0.0.1:${PORT}`);
 });

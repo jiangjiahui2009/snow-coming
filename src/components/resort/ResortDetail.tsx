@@ -36,8 +36,8 @@ export default function ResortDetail({ resort }: ResortDetailProps) {
         )}
       </div>
       <div className="grid grid-cols-2 gap-3 content-start">
-        <Stat label="海拔" value={`${resort.altitude.base}m - ${resort.altitude.peak}m`} />
-        <Stat label="垂直落差" value={`${verticalDrop}m`} />
+        <Stat label="海拔" value={`${Math.round(resort.altitude.base)}m - ${Math.round(resort.altitude.peak)}m`} />
+        <Stat label="垂直落差" value={`${Math.round(verticalDrop)}m`} />
         <Stat label="雪道数量" value={`${resort.totalSlopes} 条`} />
         <Stat label="缆车数量" value={`${resort.totalLifts} 条`} />
       </div>

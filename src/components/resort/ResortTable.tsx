@@ -72,12 +72,12 @@ export default function ResortTable() {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="text-sm border-collapse table-fixed" style={{ width: 130 + dates.length * 52 + 56 + 56 + 56 + 56 }}>
+        <table className="text-sm border-collapse table-fixed" style={{ width: 124 + dates.length * 52 + 56 + 56 + 56 + 56 }}>
           <thead>
             <tr className="bg-slate-50 border-b border-slate-200">
               <th
                 scope="col"
-                className="text-left px-4 py-1.5 text-xs font-medium text-slate-500 sticky left-0 bg-slate-50 z-10 w-[130px]"
+                className="text-left px-4 py-1.5 text-xs font-medium text-slate-500 sticky left-0 bg-slate-50 z-10 w-[124px]"
               >
                 <select
                   value={selectedProvince || ''}
@@ -162,7 +162,7 @@ export default function ResortTable() {
                           className={`text-[10px] px-1.5 py-0 ${REGION_COLORS[resort.region]}`}
                         />
                         <span className="text-[10px] text-slate-400">
-                          {resort.altitude.base}m起
+                          {Math.round(resort.altitude.base)}m起
                         </span>
                       </div>
                     </Link>
