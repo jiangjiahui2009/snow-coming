@@ -76,6 +76,18 @@ export default function ResortPage() {
           </>
         ) : null}
       </div>
+
+      {/* Windy map */}
+      <div className="mt-8">
+        <h2 className="text-sm font-semibold text-slate-500 mb-3">云图</h2>
+        <div className="bg-white rounded-2xl shadow-sm overflow-hidden aspect-square">
+          <iframe
+            title="Windy 天气地图"
+            src={`https://embed.windy.com/embed2.html?lat=${resort.coordinates.lat}&lon=${resort.coordinates.lng}&zoom=10&level=surface&overlay=snowAccu&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&metricWind=default&metricTemp=default&radarRange=-1`}
+            className="w-full h-full border-0"
+          />
+        </div>
+      </div>
     </div>
   );
 }
